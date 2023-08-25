@@ -6,17 +6,19 @@ import Dias from "./components/dias/Dias";
 import "./App.css";
 
 function App() {
-  const [buscar, setBuscar] = useState("");
+  
   const [climaDiario, setClimaDiario] = useState({});
-
+  const [buscar,setBuscar]=useState("")
   const [ciudad, setCiudad] = useState("helsinki");
 
+  const handleClick = function () {
+    setCiudad(buscar);
+    obtenerclima()
+    console.log(ciudad)
+  };
+
   const obtenerclima = () => {
-    axios
-      .get(
-        `https://api.openweathermap.org/data/2.5/forecast?q=` +
-          ciudad +
-          `&cnt=5&appid=38df1ecf822c2924dd83001576656363&units=metric `
+    axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=`+ciudad+`&cnt=5&appid=38df1ecf822c2924dd83001576656363&units=metric`
       )
       .then(function (response) {
         setClimaDiario(response.data);
@@ -28,9 +30,7 @@ function App() {
       .finally(function () {});
   };
 
-  const handleClick = function () {
-    setCiudad(buscar);
-  };
+ 
 
   useEffect(() => {
     if (Object.keys(climaDiario).length == 0) {
@@ -71,7 +71,7 @@ function App() {
       />
 
       <button className="material-symbols-outlined" onClick={handleClick}>
-        my_location{" "}
+        my_location
       </button>
 
       {climaDiario ? (
