@@ -2,27 +2,24 @@ import { useEffect, useState } from "react";
 import React from "react";
 import axios from "axios";
 import Dias from "./components/dias/Dias";
+import Fecha from "./components/Fecha";
 
 import "./App.css";
 
 function App() {
-  
   const [climaDiario, setClimaDiario] = useState({});
-  const [buscar,setBuscar]=useState("")
+  const [buscar, setBuscar] = useState("");
   const [ciudad, setCiudad] = useState("helsinki");
 
-  const handleClick = function () {
-    setCiudad(buscar);
-    obtenerclima()
-    console.log(ciudad)
-  };
-
   const obtenerclima = () => {
-    axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=`+ciudad+`&cnt=5&appid=38df1ecf822c2924dd83001576656363&units=metric`
+    axios
+      .get(
+        `https://api.openweathermap.org/data/2.5/forecast?q=` +
+          ciudad +
+          `&cnt=40&appid=38df1ecf822c2924dd83001576656363&units=metric`
       )
       .then(function (response) {
         setClimaDiario(response.data);
-        console.log(response.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -30,13 +27,20 @@ function App() {
       .finally(function () {});
   };
 
- 
+  const handleClick = function () {
+    setCiudad(buscar);
+    obtenerclima();
+
+    console.log(ciudad);
+  };
 
   useEffect(() => {
     if (Object.keys(climaDiario).length == 0) {
       obtenerclima();
     }
   }, [climaDiario]);
+
+ console.log(climaDiario)
 
   /* useEffect(() => {
     fetchData(ciudad);
@@ -60,7 +64,8 @@ function App() {
   }, [ciudad]); */
 
   // const diasa=climaDiario.list
-  console.log(climaDiario);
+  //console.log(climaDiario);
+  //let fecha= new Date(climaDiario.list[0].dt_txt)
 
   return (
     <>
@@ -79,6 +84,11 @@ function App() {
           <div className="appcontainer">
             <aside>
               <div className="searchbarcontainer"></div>
+              <h1>{Math.floor(climaDiario.list[0].main.temp)+`ºc`}</h1>
+              <h3>{climaDiario.list[0].weather[0].description}</h3>
+              <Fecha fechat={climaDiario.list[0].dt_txt}/>
+              <p>{climaDiario.city.name}</p>
+
               <section>
                 <img src="" alt="" />
               </section>
