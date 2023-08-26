@@ -1,35 +1,32 @@
-import React from 'react'
+import React from 'react';
 
-function fecha({fechat}) {
+function Fecha({ fechat }) {
+  const diasSemana = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const meses = [
+    "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"
+  ];
+  
+  const fecha = new Date(fechat);
+  const diaSemana = diasSemana[fecha.getDay()];
+  const dia = fecha.getDate();
+  const mes = meses[fecha.getMonth()];
+  
+  const hoy = new Date();
+  const esHoy = fecha.toDateString() === hoy.toDateString();
+  const esMañana = fecha.toDateString() === new Date(hoy.getTime() + 24 * 60 * 60 * 1000).toDateString();
 
-    let diasSemana = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    let meses = [
-      "jan",
-      "feb",
-      "mar",
-      "apr",
-      "may",
-      "jun",
-      "jul",
-      "aug",
-      "sep",
-      "oct",
-      "nov",
-      "dec",
-    ];
-    let fecha= new Date(fechat);
-    let diaSemana=diasSemana[fecha.getDay()];
-    let dia= fecha.getDate()
-    let mes = meses[fecha.getMonth()]
-    
-    
-
-    
-
+  let diaTexto;
+  if (esHoy) {
+    diaTexto = "Today";
+  } else if (esMañana) {
+    diaTexto = "Tomorrow";
+  } else {
+    diaTexto = diaSemana;
+  }
 
   return (
-    <p> Today {diaSemana} {dia} {mes}</p>
-  )
+    <p>{diaTexto !== "Today" && diaTexto} {dia} {mes}</p>
+  );
 }
 
-export default fecha
+export default Fecha;

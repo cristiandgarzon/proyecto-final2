@@ -3,6 +3,8 @@ import React from "react";
 import axios from "axios";
 import Dias from "./components/dias/Dias";
 import Fecha from "./components/Fecha";
+import Logos from "./components/logos/Logos";
+import Cloudbackground from "./assets/Cloud-background.png";
 
 import "./App.css";
 
@@ -16,7 +18,7 @@ function App() {
       .get(
         `https://api.openweathermap.org/data/2.5/forecast?q=` +
           ciudad +
-          `&cnt=40&appid=38df1ecf822c2924dd83001576656363&units=metric`
+          `&cnt=31&appid=38df1ecf822c2924dd83001576656363&units=metric`
       )
       .then(function (response) {
         setClimaDiario(response.data);
@@ -39,8 +41,6 @@ function App() {
       obtenerclima();
     }
   }, [climaDiario]);
-
- console.log(climaDiario)
 
   /* useEffect(() => {
     fetchData(ciudad);
@@ -69,39 +69,63 @@ function App() {
 
   return (
     <>
-      <input
-        type="text"
-        placeholder="Search For places"
-        onChange={(e) => setBuscar(e.target.value)}
-      />
-
-      <button className="material-symbols-outlined" onClick={handleClick}>
-        my_location
-      </button>
-
-      {climaDiario ? (
-        climaDiario.list && (
-          <div className="appcontainer">
-            <aside>
-              <div className="searchbarcontainer"></div>
-              <h1>{Math.floor(climaDiario.list[0].main.temp)+`ºc`}</h1>
-              <h3>{climaDiario.list[0].weather[0].description}</h3>
-              <Fecha fechat={climaDiario.list[0].dt_txt}/>
-              <p>{climaDiario.city.name}</p>
-
-              <section>
-                <img src="" alt="" />
-              </section>
-            </aside>
-
-            <main>
-              <Dias arrdays={climaDiario.list} />
-            </main>
+      <div className="appcontainer">
+        <aside>
+          <div className="searchbarcontainer">
+            <input
+              type="text"
+              placeholder="Search For places"
+              onChange={(e) => setBuscar(e.target.value)}
+            />
           </div>
-        )
-      ) : (
-        <h1>Cargando...</h1>
-      )}
+
+          <button className="material-symbols-outlined" onClick={handleClick}>
+            my_location
+          </button>
+        </aside>
+        {climaDiario ? (
+          climaDiario.list && (
+            <>
+              <div className="contenedorGeneral">
+                <aside id="aside2">
+                  <div className="infodia">
+                    <div className="logocontainer">
+                      <Logos
+                        textoLogo={climaDiario.list[0].weather[0].main}
+                        tamaño={true}
+                      />
+                      <img
+                        className="imagen-absoluta"
+                        src={Cloudbackground}
+                        alt=""
+                      />
+                    </div>
+
+                    <p className="temperatura">
+                      {Math.floor(climaDiario.list[0].main.temp)}
+                      <small>ºc</small>
+                    </p>
+
+                    <h3>{climaDiario.list[0].weather[0].description}</h3>
+                    <Fecha fechat={climaDiario.list[0].dt_txt} />
+                    <p>{climaDiario.city.name}</p>
+                  </div>
+
+                  <section>
+                    <img src="" alt="" />
+                  </section>
+                </aside>
+
+                <main className="cardsContainer">
+                  <Dias arrdays={climaDiario.list} />
+                </main>
+              </div>
+            </>
+          )
+        ) : (
+          <h1>Cargando...</h1>
+        )}
+      </div>
     </>
   );
 }
