@@ -10,13 +10,18 @@
     
 }
 .logoContainer{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height:75px;
+    
 }
 .fecha{
     align-self: center;
     display: flex;
     justify-content: center;
+    
+}
+
+.pTemps{
+    display: flex;
+    justify-content: space-between;
     
 }
