@@ -1,0 +1,27 @@
+#cardday{
+    
+    background-color: rgb(30, 33, 58);
+    width: 7.5rem;
+    height: 11.063;
+    margin: 0.5rem;
+    color: white;
+    justify-content: center;
+
+    
+}
+.logoContainer{
+    height:75px;
+    
+}
+.fecha{
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.pTemps{
+    display: flex;
+    justify-content: space-between;
+    
+}

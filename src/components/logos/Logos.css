@@ -1,0 +1,15 @@
+.normal{
+    
+    padding-right: 2rem;
+    z-index: 1
+
+    
+
+}
+.pequeño{
+    position: absolute;
+    left: 1rem;
+    width:5rem;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+}

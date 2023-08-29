@@ -1,23 +1,140 @@
 #root {
   max-width: 1280px;
   min-width:  375px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  margin:0;
+  padding: 0;
+  
+}
+
+.contenedorGeneral{
+  margin: 0;
+  padding: 0;
+  display: flex;
+  max-width: 1280px;
+  min-width: 375px;
+  max-height: 67.5rem;
+ 
+  
+}
+
+.infodia{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  margin: 0;
+  padding: 0;
+}
+aside{
+  background-color:rgb(30, 33, 58) ;
+  margin: 0;
+  min-width: 375px;
+  justify-content: space-between;
+  display: flex;
+  padding: 0;
+  
+
+}
+#aside2{
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-content: space-evenly;
+  height: 100vh;
+}
+
+.searchbarcontainer{
+  display: flex;
+  
+  
+  justify-content: center;
+  justify-self: flex-start;
+ 
+  margin-top: 0;
+}
+#botonSearch{
+  border-radius: 50%;
+  background-color: rgb(160, 159, 177);
+  color: white;
+  padding: 0.5rem;
+  margin-left: 1rem;
+
+}
+
+.logocontainer {
+  position: relative;
+}
+
+.imagen-absoluta {
+  width: 100%;
+  position: absolute;
+  top: 0.5rem;
+  left: -5.6rem;
+  width: 175%;
+  height: auto;
+  opacity: 0.2;
+
+  
 }
 
 
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+
+
+
+
+.temperatura{
+  display: flex;
+  align-items: flex-end;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 500;
+  font-size: 10rem;
+  
+  
+}
+.asideBotton{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.grados{
+  font-size: 3.5rem;
+  font-weight: 400;
+  color: rgb(160, 159, 177);
+
 }
 
-.card {
-  padding: 2em;
+.climatx{
+  
+  color: rgb(160, 159, 177);
+  margin: 0;
+}
+.fechas{
+  color: rgb(160, 159, 177);
+  
+ 
+}
+.location{
+  color: rgb(160, 159, 177);
+  display: flex; 
+  align-items: center;
+  margin: 0;
+
 }
 
-.read-the-docs {
-  color: #888;
+.cardsContainer{
+  display: flex;
+  height: 12rem;
+  margin: 4rem 4rem 0rem 4rem;
+
+
 }
+
+.detailsContainer{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+}
+
