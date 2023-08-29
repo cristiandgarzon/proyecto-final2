@@ -53,7 +53,14 @@ aside{
  
   margin-top: 0;
 }
+#botonSearch{
+  border-radius: 50%;
+  background-color: rgb(160, 159, 177);
+  color: white;
+  padding: 0.5rem;
+  margin-left: 1rem;
 
+}
 
 .logocontainer {
   position: relative;
@@ -119,8 +126,15 @@ aside{
 .cardsContainer{
   display: flex;
   height: 12rem;
-  margin: 3rem 4rem;
+  margin: 4rem 4rem 0rem 4rem;
 
+
+}
+
+.detailsContainer{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 
 }
 

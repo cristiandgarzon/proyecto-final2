@@ -6,8 +6,12 @@ import Fecha from "./components/Fecha";
 import Logos from "./components/logos/Logos";
 import Cloudbackground from "./assets/Cloud-background.png";
 import Details from "./components/details/Details";
+import { Drawer } from "@mui/material";
+import Button from '@mui/material/Button';
+
 
 import "./App.css";
+
 
 function App() {
   const [climaDiario, setClimaDiario] = useState({});
@@ -62,11 +66,13 @@ function App() {
                       onChange={(e) => setBuscar(e.target.value)}
                     />
                     <button
-                      className="material-symbols-outlined"
+                      id="botonSearch" className="material-symbols-outlined"
                       onClick={handleClick}
                     >
                       my_location
                     </button>
+                    <Drawer/>
+                    
                   </div>
 
                   <div className="infodia">
@@ -105,9 +111,12 @@ function App() {
                   <div className="cardsContainer">
                   <Dias arrdays={climaDiario.list} />
                   </div>
-                  <div className="detailsContainer">
-                  
-                  <Details
+
+                <h3> {" ·"}{"closest date Details"}</h3>
+
+                <div className="detailsContainer">
+
+                 <Details
                   todaydetails={climaDiario.list[0]}
                   wind={true}
                   />
@@ -123,12 +132,11 @@ function App() {
                   todaydetails={climaDiario.list[0]}
                   airP={true}
                   />
-
-                  </div>
+                   </div>
                   
                 </main>
                 
-                <section className="InfDiaContainer"></section>
+                
               </div>
             </>
           )

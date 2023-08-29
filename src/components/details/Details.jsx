@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from '@mui/joy/Slider';
 import Box from '@mui/joy/Box';
+import "./Details.css"
+
 
 
 
 
 function Details({ todaydetails, wind, humidity, visibility, airP }) {
   const today = { todaydetails };
-  console.log(today);
+  
 
   let id = new Date().getTime();
   <style>
@@ -27,7 +29,7 @@ function Details({ todaydetails, wind, humidity, visibility, airP }) {
 
   //determinar direccion del viento
   let grados= today.todaydetails.wind.deg
-  console.log(grados)
+  
   const getWindDirection=(grados) =>{
     const directions = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"];
     const index = Math.round((grados % 360) / 22.5 %16);
@@ -35,7 +37,7 @@ function Details({ todaydetails, wind, humidity, visibility, airP }) {
 
   }
  const windDirection= getWindDirection(grados)
-
+//determinar la humedad
  const marks = [
     {
       value: 0,
@@ -56,12 +58,29 @@ function Details({ todaydetails, wind, humidity, visibility, airP }) {
     return `${value}%`;
   }
 
+const temp=today.todaydetails.main.humidity
+
+//determinar la visibilidad
+const[metros,setMetros]=useState(0);
+const[millas,setMillas]=useState(0);
+
+const data= today.todaydetails.visibility
+
+
+
+useEffect(() => {
+  const millasConversion = data/ 1609.34; // 1 metro equivale a 0.000621371 millas
+  setMetros(data);
+  setMillas(millasConversion.toFixed(1));
+}, []);
+// determinar la presion de aire
+ 
 
  
 
   
- let temp=(today.todaydetails.main.humidity)
-  console.log(temp)
+ // let temp=(today.todaydetails.main.humidity)
+  
 
 
 
@@ -70,22 +89,26 @@ function Details({ todaydetails, wind, humidity, visibility, airP }) {
     <>
       {/*primer componente wind velocidad y direccion*/}
       {wind == true && (
-        <div>
-          <h3>Wind status</h3>
-          <p>{Math.floor(today.todaydetails.wind.speed)} MPH</p>
-          <p><span class="material-symbols-outlined">
+        <div className="carddetail">
+          <p>Wind status</p>
+          <p className="textoDetails">{Math.floor(today.todaydetails.wind.speed)} MPH</p>
+          <Box sx={{ width: 300,padding:"1.5rem", display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <span className="material-symbols-outlined">
           assistant_navigation
-         </span>{windDirection}</p>
+         </span>{"  · "}{windDirection}
+
+          </Box>
 
         </div>
       )}
       {humidity==true&&(
-        <div>
-            <h3>Humidity</h3>
-            <p>{today.todaydetails.main.humidity}%</p>
-            <Box sx={{ width: 300 }}>
+        <div className="carddetail">
+            <p>Humidity</p>
+            <p className="textoDetails">{today.todaydetails.main.humidity}%</p>
+            <Box sx={{ width: 300, padding:"1.5rem", display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
             <Slider 
             
+            value={temp}
             
             aria-label="Custom marks"
             getAriaValueText={valueText}
@@ -94,9 +117,10 @@ function Details({ todaydetails, wind, humidity, visibility, airP }) {
             marks={marks}
             
             
+            
             />
                 
-            </Box>
+          </Box>
            
             
            
@@ -104,13 +128,18 @@ function Details({ todaydetails, wind, humidity, visibility, airP }) {
         </div>
       )}
       {visibility==true&&(
-        <div>
-            <h3>Visibility</h3>
+        <div className="detailsP">
+            <p>Visibility</p>
+            <p className="textoDetails">{millas} Miles</p>
+            
+
         </div>
       )}
       {airP==true&&(
-        <div>
-            <h3>Air Pressure</h3>
+        <div className="detailsP">
+            <p>Air Pressure</p>
+            <p className="textoDetails">{today.todaydetails.main.pressure} mb</p>
+            
         </div>
       )}
     </>

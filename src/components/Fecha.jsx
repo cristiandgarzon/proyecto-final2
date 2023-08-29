@@ -27,7 +27,7 @@ function Fecha({ fechat, p }) {
   }
 
   return (
-    <p className={p ? "fechas":""} >{diaTexto === "Today"? "Today" : diaTexto}{puntuacion} {dia } { mes}</p>
+    <p className={p ? "fechas":""} >{diaTexto === "Today"? "Today" : diaTexto}{puntuacion} {dia} {mes}</p>
   );
 }
 

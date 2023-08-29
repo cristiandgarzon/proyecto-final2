@@ -1,8 +1,8 @@
-# React + Vite
+El proyecto final tiene unos cuantos cambios de funcionamiento
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+1. la busqueda de ciudades se hace a travez del boton con el simbolo "target"   despues de haber ingresado la ciudad que se quiere buscar, en el input que esta justo al lado. 
+2. debido a que la API se actualiza durante el dia es posible que los detalles de hoy no aparescan de ahi el poruq e de que el titulo diga "closest date details"
+3. debido al tiempo y que aun no domino muy bien el tema de componentes de material ui no me fue posible implementar el Drower, es decir que no hay un historial de busqueda que se renderise aun. 
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+problemas de funcionamiento . 
+1. el unico problema de funcionamiento importante es que para que se renderice la ciudad que se quiere busca hay que dar doble click en el boton  
